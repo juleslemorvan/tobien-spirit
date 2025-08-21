@@ -15,7 +15,7 @@ import {
 import Link from "next/link";
 import { NavBar } from "../NavBar/NavBar";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
 export const Header = () => {
@@ -26,13 +26,39 @@ export const Header = () => {
     onClose();
   }, [params]);
 
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setShowNavbar(false); // Scroll vers le bas
+      } else {
+        setShowNavbar(true); // Scroll vers le haut
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
     <HStack
-      justify="space-between"
-      align="center"
+     position="fixed"
+      w="100%"
       p={{ base: "30px", xl: "20px" }}
-      h={{ base: "16vh", md: "15vh" }}
-      bg="red.100"
+      h={{ base: "16vh", md: "12vh" }}
+      bg="#DDE0D7"
+      backdropFilter="saturate(180%) blur(10px)" // flou derrière
+        zIndex={1000}
+        transition="transform 0.4s ease-in-out, background-color 0.3s ease"
+        transform={showNavbar ? "translateY(0)" : "translateY(-100%)"}
+        justify="space-between" 
     >
       {/* Logo visible sur desktop et mobile */}
       <Link href="/">
@@ -55,7 +81,7 @@ export const Header = () => {
         <IconButton
           aria-label="open mobile menu"
           onClick={onOpen}
-          icon={<GiHamburgerMenu size={20} color="#db9d73" />}
+          icon={<GiHamburgerMenu size={20} color="#1F4458" />}
           style={{ backgroundColor: "transparent" }}
         />
       </Show>
@@ -67,9 +93,10 @@ export const Header = () => {
         isOpen={isOpen}
         onClose={onClose}
         size="full"
+        bg="#1F4458"
       >
         <DrawerOverlay />
-        <DrawerContent justifyContent="space-evenly" fontSize="30px">
+        <DrawerContent justifyContent="space-evenly" fontSize="30px" bg="#EBEEE5">
           <DrawerCloseButton margin="30px" padding="15px" size="lg" />
           <NavBar />
         </DrawerContent>

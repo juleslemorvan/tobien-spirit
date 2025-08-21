@@ -1,3 +1,5 @@
+import Brand from "@/components/Brand/Brand";
+import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
 import { Header } from "@/components/Header/Header";
 import Hero from "@/components/Hero/Hero";
@@ -8,7 +10,9 @@ export default function Home() {
     <main style={{ flex: "1" }}>
       <Header />
       <Hero />
+      <Brand />
       <Philosophy />
+      <Contact />
       <Footer />
     </main>
   );

@@ -49,13 +49,13 @@ export const NavBar = () => {
           </Box>
         </Link>
 
-        <Link href="/news" passHref>
+        <Link href="/#story" passHref>
           <Box
             letterSpacing={{ base: "0px", md: "1px" }}
             color="#1F4458"
           >
             
-            {t("news")}
+            {t("navbar.story")}
           </Box>
         </Link>
 
@@ -65,7 +65,7 @@ export const NavBar = () => {
              color="#1F4458"
           >
             
-            {t("contact")}
+            {t("navbar.contact")}
           </Box>
         </Link>
       </Stack>

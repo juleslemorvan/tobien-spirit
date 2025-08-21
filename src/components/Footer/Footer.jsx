@@ -16,7 +16,7 @@ const Footer = () => {
         justify="space-between"
         px="6"
         py="4"
-        bg="white"
+        bg="#EBEEE5"
         _dark={{
           bg: "gray.800",
         }}
