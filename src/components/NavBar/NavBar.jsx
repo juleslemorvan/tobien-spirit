@@ -1,7 +1,6 @@
 "use client";
 // import { Link } from "@chakra-ui/next-js";
 import Link from "next/link"
-// import NextLink from "next/link";
 import { Image, Stack, Box, Flex, Select } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -15,7 +14,7 @@ export const NavBar = () => {
       i18n.changeLanguage("en");
     } else if (selectedLanguage === "PT") {
       i18n.changeLanguage("pt");
-    } 
+    }
   }, [selectedLanguage]);
 
   return (
@@ -25,11 +24,8 @@ export const NavBar = () => {
       direction={{ base: "column", md: "row" }}
       align="center"
       justifyContent={{ base: "space-around", md: "flex-end" }}
-      
     >
-      <Flex>
-        
-      </Flex>
+      
       <Stack
         textAlign={{ base: "center" }}
         justifyContent="center"
@@ -39,37 +35,29 @@ export const NavBar = () => {
         fontFamily="Figtree, sans-serif;"
       >
         <Link href="/#cocktails" passHref>
+       
           <Box
-            letterSpacing={{ base: "0px", md: "1px" }}
-           
+            letterSpacing={{ base: "0px", md: "2px" }}
             color="#1F4458"
+            _hover={{ color: "teal" }}
           >
-            
+          
             {t("navbar.brands")}
+          </Box>{" "}
+        </Link>
+
+        <Link href="/#product" passHref>
+          <Box letterSpacing={{ base: "0px", md: "1px" }} color="#1F4458" _hover={{ color: "teal" }}>
+            {t("navbar.product")}
           </Box>
         </Link>
 
-        <Link href="/#story" passHref>
-          <Box
-            letterSpacing={{ base: "0px", md: "1px" }}
-            color="#1F4458"
-          >
-            
-            {t("navbar.story")}
-          </Box>
-        </Link>
-
-       <Link href="/#contact" passHref>
-          <Box
-            letterSpacing={{ base: "0px", md: "1px" }}
-             color="#1F4458"
-          >
-            
+        <Link href="/#contact" passHref>
+          <Box letterSpacing={{ base: "0px", md: "1px" }} color="#1F4458" _hover={{ color: "teal" }}>
             {t("navbar.contact")}
           </Box>
         </Link>
       </Stack>
-      
 
       <Flex display="flex" mr={{ base: "0px", md: "60px" }}>
         <Select
@@ -86,7 +74,6 @@ export const NavBar = () => {
           <option value="PT" onSelect={() => i18n.changeLanguage("pt")} id="PT">
             PT
           </option>
-          
         </Select>
       </Flex>
     </Stack>
